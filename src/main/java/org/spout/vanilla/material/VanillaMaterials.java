@@ -171,6 +171,7 @@ import org.spout.vanilla.material.item.tool.Spade;
 import org.spout.vanilla.material.item.weapon.Bow;
 import org.spout.vanilla.material.item.weapon.Sword;
 import org.spout.vanilla.util.Music;
+import org.spout.vanilla.world.generator.theend.biome.EndStoneBiome;
 
 import static org.spout.api.material.MaterialRegistry.register;
 
@@ -187,7 +188,7 @@ public final class VanillaMaterials {
 	public static final Gravel GRAVEL = register(new Gravel("Gravel", 13));
 	public static final Log LOG = Log.DEFAULT;
 	public static final Leaves LEAVES = Leaves.DEFAULT;
-	public static final Solid SPONGE = (Solid) register(new Solid("Sponge", 19).setHardness(0.6F).setResistance(1.0F));
+	public static final Sponge SPONGE = register(new Sponge("Sponge", 19));
 	public static final Glass GLASS = register(new Glass("Glass", 20));
 	public static final Dispenser DISPENSER = register(new Dispenser("Dispenser", 23));
 	public static final Sandstone SANDSTONE = Sandstone.SANDSTONE;
@@ -282,7 +283,7 @@ public final class VanillaMaterials {
 	public static final SoulSand SOUL_SAND = register(new SoulSand("Soul Sand", 88));
 	public static final Glowstone GLOWSTONE_BLOCK = register(new Glowstone("Glowstone Block", 89));
 	public static final Pumpkin JACK_O_LANTERN = register(new Pumpkin("Jack 'o' Lantern", 91, true));
-	public static final Solid END_STONE = (Solid) register(new Solid("End Stone", 121).setHardness(3.0F).setResistance(15.0F));
+	public static final Endstone END_STONE = register(new Endstone("End Stone", 121));
 	public static final CakeBlock CAKE_BLOCK = register(new CakeBlock("Cake Block", 92));
 	public static final RedstoneRepeater REDSTONE_REPEATER_OFF = register(new RedstoneRepeater("Redstone Repeater", 93, false));
 	public static final RedstoneRepeater REDSTONE_REPEATER_ON = register(new RedstoneRepeater("Redstone Repeater (On)", 94, true));

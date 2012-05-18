@@ -26,15 +26,23 @@
  */
 package org.spout.vanilla.material.block.solid;
 
+import java.util.ArrayList;
+
+import org.spout.api.Source;
+import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
+import org.spout.api.player.Player;
 
 import org.spout.vanilla.material.Mineable;
+import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.block.Solid;
 import org.spout.vanilla.material.item.MiningTool;
 import org.spout.vanilla.material.item.tool.Pickaxe;
 import org.spout.vanilla.util.MoveReaction;
 
 public class Obsidian extends Solid implements Mineable {
+	ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 	public Obsidian(String name, int id) {
 		super(name, id);
 	}
@@ -43,6 +51,8 @@ public class Obsidian extends Solid implements Mineable {
 	public void initialize() {
 		super.initialize();
 		this.setHardness(50.0F).setResistance(2000.0F);
+		//By default blocks are initialized with bad data.
+		drops.add(new ItemStack(this, (short) -1, 1));
 	}
 
 	@Override
@@ -53,5 +63,16 @@ public class Obsidian extends Solid implements Mineable {
 	@Override
 	public MoveReaction getMoveReaction(Block block) {
 		return MoveReaction.DENY;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		if (block.getSource() instanceof Entity) {
+			if (((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial().equals(VanillaMaterials.DIAMOND_PICKAXE)) {
+				drops.add(new ItemStack(block.getMaterial(), block.getData(), 1));
+			}
+		}
+		return drops;
 	}
 }

@@ -26,8 +26,11 @@
  */
 package org.spout.vanilla.material.block.plant;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.source.DataSource;
@@ -46,7 +49,7 @@ public class NetherWartBlock extends GroundAttachable implements Plant {
 	@Override
 	public void initialize() {
 		super.initialize();
-		this.setResistance(0.0F).setDrop(VanillaMaterials.NETHER_WART);
+		this.setResistance(0.0F);
 	}
 
 	@Override
@@ -70,13 +73,15 @@ public class NetherWartBlock extends GroundAttachable implements Plant {
 	}
 
 	@Override
-	public int getDropCount() {
-		return stage == GrowthStage.LAST ? new Random().nextInt(4) + 2 : 1;
+	public boolean canAttachTo(BlockMaterial material, BlockFace face) {
+		return material.equals(VanillaMaterials.SOUL_SAND) && super.canAttachTo(material, face);
 	}
 
 	@Override
-	public boolean canAttachTo(BlockMaterial material, BlockFace face) {
-		return material.equals(VanillaMaterials.SOUL_SAND) && super.canAttachTo(material, face);
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(VanillaMaterials.LILY_PAD, block.getData(), stage == GrowthStage.LAST ? new Random().nextInt(4) + 2 : 1));
+		return drops;
 	}
 
 	public GrowthStage getGrowthStage() {

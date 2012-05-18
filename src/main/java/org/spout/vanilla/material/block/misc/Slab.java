@@ -26,12 +26,16 @@
  */
 package org.spout.vanilla.material.block.misc;
 
+import java.util.ArrayList;
+
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.util.LogicUtil;
 
 import org.spout.vanilla.material.Mineable;
 import org.spout.vanilla.material.VanillaBlockMaterial;
+import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.block.solid.DoubleSlab;
 import org.spout.vanilla.material.item.MiningTool;
 import org.spout.vanilla.material.item.tool.Pickaxe;
@@ -136,5 +140,18 @@ public class Slab extends VanillaBlockMaterial implements Mineable {
 	@Override
 	public short getDurabilityPenalty(MiningTool tool) {
 		return tool instanceof Pickaxe ? (short) 1 : (short) 2;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		Slab slab = (Slab) block.getSubMaterial();
+		if (slab.getDoubleType() != null) {
+			DoubleSlab doubleSlab = slab.getDoubleType();
+			drops.add(new ItemStack(doubleSlab, block.getData(), 1));
+		} else {
+			drops.add(new ItemStack(slab, block.getData(), 1));
+		}
+		return drops;
 	}
 }

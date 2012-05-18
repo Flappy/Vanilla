@@ -26,6 +26,7 @@
  */
 package org.spout.vanilla.material.block.plant;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.spout.api.entity.Entity;
@@ -52,7 +53,7 @@ public class WheatCrop extends GroundAttachable implements Plant {
 	@Override
 	public void initialize() {
 		super.initialize();
-		this.setResistance(0.0F).setDrop(VanillaMaterials.WHEAT);
+		this.setResistance(0.0F);
 	}
 
 	@Override
@@ -68,16 +69,6 @@ public class WheatCrop extends GroundAttachable implements Plant {
 	@Override
 	public int getMinimumLightToGrow() {
 		return 9;
-	}
-
-	@Override
-	public Material getDrop() {
-		return VanillaMaterials.SEEDS;
-	}
-
-	@Override
-	public int getDropCount() {
-		return rand.nextInt(4);
 	}
 
 	@Override
@@ -97,6 +88,13 @@ public class WheatCrop extends GroundAttachable implements Plant {
 				this.setGrowthStage(block, 0x7);
 			}
 		}
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		//TODO This
+		return drops;
 	}
 
 	public int getGrowthStage(Block block) {

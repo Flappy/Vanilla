@@ -26,13 +26,17 @@
  */
 package org.spout.vanilla.material.block.door;
 
+import java.util.ArrayList;
+
 import org.spout.api.entity.Entity;
 import org.spout.api.event.player.PlayerInteractEvent.Action;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.block.BlockFace;
 
 import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.block.DoorBlock;
+import org.spout.vanilla.material.item.tool.Pickaxe;
 import org.spout.vanilla.protocol.VanillaNetworkSynchronizer;
 import org.spout.vanilla.protocol.msg.PlayEffectMessage;
 import org.spout.vanilla.util.Instrument;
@@ -61,6 +65,13 @@ public class WoodenDoorBlock extends DoorBlock {
 	@Override
 	public void initialize() {
 		super.initialize();
-		this.setHardness(3.0F).setDrop(VanillaMaterials.WOODEN_DOOR);
+		this.setHardness(3.0F);
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(VanillaMaterials.WOODEN_DOOR, block.getData(), 1));
+		return drops;
 	}
 }

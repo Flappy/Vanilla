@@ -26,12 +26,18 @@
  */
 package org.spout.vanilla.material.block.ore;
 
+import java.util.ArrayList;
+
+import org.spout.api.entity.Entity;
+import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 
 import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.block.Ore;
 import org.spout.vanilla.material.block.misc.SignBase;
+import org.spout.vanilla.material.item.tool.Pickaxe;
 
 public class Glowstone extends Ore {
 	public Glowstone(String name, int id) {
@@ -41,7 +47,7 @@ public class Glowstone extends Ore {
 	@Override
 	public void initialize() {
 		super.initialize();
-		this.setMinDropCount(2).setMaxDropCount(4).setHardness(0.3F).setResistance(0.5F).setLightLevel(15).setDrop(VanillaMaterials.GLOWSTONE_DUST);
+		this.setHardness(0.3F).setResistance(0.5F).setLightLevel(15);
 	}
 
 	@Override
@@ -52,5 +58,12 @@ public class Glowstone extends Ore {
 	@Override
 	public boolean isRedstoneConductor() {
 		return false;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(VanillaMaterials.GLOWSTONE_DUST, block.getData(), 4));
+		return drops;
 	}
 }

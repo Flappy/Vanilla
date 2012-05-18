@@ -26,9 +26,12 @@
  */
 package org.spout.vanilla.material.block.misc;
 
+import java.util.ArrayList;
+
 import org.spout.api.Source;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.block.BlockFaces;
@@ -51,7 +54,7 @@ public class SignBase extends AbstractAttachable implements Mineable {
 	@Override
 	public void initialize() {
 		super.initialize();
-		this.setHardness(1.0F).setResistance(1.6F).setDrop(VanillaMaterials.SIGN);
+		this.setHardness(1.0F).setResistance(1.6F);
 		this.setController(VanillaControllerTypes.SIGN);
 	}
 
@@ -105,5 +108,12 @@ public class SignBase extends AbstractAttachable implements Mineable {
 	@Override
 	public short getDurabilityPenalty(MiningTool tool) {
 		return 0;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(VanillaMaterials.SIGN, block.getData(), 1));
+		return drops;
 	}
 }

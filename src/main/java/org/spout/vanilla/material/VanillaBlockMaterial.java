@@ -26,13 +26,17 @@
  */
 package org.spout.vanilla.material;
 
+import java.util.ArrayList;
+
 import org.spout.api.collision.CollisionStrategy;
+import org.spout.api.event.block.BlockChangeEvent;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.Material;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.block.BlockFaces;
+import org.spout.api.math.Vector3;
 
 import org.spout.vanilla.controller.object.moving.Item;
 import org.spout.vanilla.material.block.RedstoneSource;
@@ -41,12 +45,11 @@ import org.spout.vanilla.util.MoveReaction;
 import org.spout.vanilla.util.RedstonePowerMode;
 import org.spout.vanilla.util.VanillaPlayerUtil;
 
-public class VanillaBlockMaterial extends BlockMaterial implements VanillaMaterial {
+public abstract class VanillaBlockMaterial extends BlockMaterial implements VanillaMaterial {
 	public static final short REDSTONE_POWER_MAX = 15;
 	public static final short REDSTONE_POWER_MIN = 0;
+	private ArrayList<ItemStack> drops;
 	private float resistance;
-	private Material dropMaterial;
-	private int dropCount;
 	private int meleeDamage;
 
 	public VanillaBlockMaterial(String name, int id) {
@@ -59,7 +62,6 @@ public class VanillaBlockMaterial extends BlockMaterial implements VanillaMateri
 
 	@Override
 	public void initialize() {
-		this.setDrop(this).setDropCount(1).setDamage(1);
 		this.setCollision(CollisionStrategy.SOLID);
 		if (this.hasSubMaterials()) {
 			for (Material material : this.getSubMaterials()) {
@@ -75,12 +77,23 @@ public class VanillaBlockMaterial extends BlockMaterial implements VanillaMateri
 	 * @param block that got ignited
 	 */
 	public void onIgnite(Block block) {
+		//TODO Remove percentage of drops from getDrops
 		this.onDestroy(block);
 	}
 
 	@Override
 	public void onDestroy(Block block) {
+		//Grab the drops based on material classes' rules.
+		drops = getDrops(block);
+		BlockChangeEvent event = new BlockChangeEvent(block, block.getSource());
+		if(event.isCancelled()) {
+			return;
+		}
 		this.onDestroyBlock(block);
+		/* Calling this after the event gives a developer a chance to modify the drops themselves in the event */
+		if (drops == null || drops.isEmpty() || drops.size() == 0) {
+			return;
+		}
 		this.onDestroySpawnDrops(block);
 	}
 
@@ -156,17 +169,17 @@ public class VanillaBlockMaterial extends BlockMaterial implements VanillaMateri
 	 * @param block to spawn drops for
 	 */
 	public void onDestroySpawnDrops(Block block) {
-		if (VanillaPlayerUtil.isCreative(block.getSource())) {
+		if (VanillaPlayerUtil.isCreative(block.getSource()) || drops == null || drops.isEmpty()) {
 			return;
 		}
 
-		Material dropMat = getDrop();
-		if (dropMat != null) {
-			int count = this.getDropCount();
-			for (int i = 0; i < count && dropMat.getId() != 0; ++i) {
-				block.getWorld().createAndSpawnEntity(block.getPosition(), new Item(new ItemStack(dropMat, 1), block.getPosition().normalize().add(0, 5, 0)));
+		//TODO stack items together for more performance
+		if (drops != null && drops.size() != 0) {
+			for (ItemStack item : drops) {
+				block.getPosition().getWorld().createAndSpawnEntity(block.getPosition(), new Item(item, new Vector3(0, 5, 0)));
 			}
 		}
+		drops.clear();
 	}
 
 	/**
@@ -251,14 +264,6 @@ public class VanillaBlockMaterial extends BlockMaterial implements VanillaMateri
 		return resistance;
 	}
 
-	public Material getDrop() {
-		return dropMaterial;
-	}
-
-	public int getDropCount() {
-		return dropCount;
-	}
-
 	/**
 	 * Gets whether this block material can support the attachable block material to the face given
 	 * @param material to attach
@@ -296,13 +301,22 @@ public class VanillaBlockMaterial extends BlockMaterial implements VanillaMateri
 		return setLightLevel((byte) level);
 	}
 
-	public VanillaBlockMaterial setDrop(Material id) {
-		dropMaterial = id;
-		return this;
+	/**
+	 * Set the drops this material will drop when destroyed.
+	 * @param drops The new drops to drop.
+	 * @return
+	 */
+	public void setDrops(ArrayList<ItemStack> drops) {
+		this.drops = drops;
 	}
 
-	public VanillaBlockMaterial setDropCount(int count) {
-		dropCount = count;
-		return this;
+	/**
+	 * Gets the drops that should be dropped. Override this method to provide rules
+	 * for what should be dropped and when.
+	 * @param block
+	 * @return
+	 */
+	public ArrayList<ItemStack> getDrops(Block block) {
+		return null;
 	}
 }

@@ -26,8 +26,12 @@
  */
 package org.spout.vanilla.material.block.piston;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.block.BlockFaces;
@@ -69,6 +73,7 @@ public class Piston extends VanillaBlockMaterial implements Directional, Redston
 
 	@Override
 	public void onDestroyBlock(Block block) {
+		super.onDestroy(block);
 		if (this.isExtended(block)) {
 			Block extension = block.translate(this.getFacing(block));
 			if (extension.getMaterial() instanceof PistonExtension) {
@@ -262,5 +267,16 @@ public class Piston extends VanillaBlockMaterial implements Directional, Redston
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		if (sticky) {
+			drops.add(new ItemStack(VanillaMaterials.PISTON_STICKY_BASE, block.getData(), 1));
+		} else {
+			drops.add(new ItemStack(VanillaMaterials.PISTON_BASE, block.getData(), 1));
+		}
+		return drops;
 	}
 }

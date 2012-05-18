@@ -26,11 +26,15 @@
  */
 package org.spout.vanilla.material.block.rail;
 
+import java.util.ArrayList;
+
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.util.LogicUtil;
 
 import org.spout.vanilla.controller.world.BlockUpdater;
+import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.block.RailBase;
 import org.spout.vanilla.material.block.RedstoneSource;
 import org.spout.vanilla.material.block.ScheduleUpdated;
@@ -118,5 +122,12 @@ public class DetectorRail extends RailBase implements RedstoneSource, ScheduleUp
 	@Override
 	public boolean hasRedstonePowerTo(Block block, BlockFace direction, RedstonePowerMode powerMode) {
 		return this.isPowering(block) && direction == BlockFace.BOTTOM;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		//TODO this
+		return drops;
 	}
 }
