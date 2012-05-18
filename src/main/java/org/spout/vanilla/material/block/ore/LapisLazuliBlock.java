@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
+import org.spout.api.material.Material;
 
 import org.spout.vanilla.material.Mineable;
 import org.spout.vanilla.material.VanillaMaterials;
@@ -59,7 +60,8 @@ public class LapisLazuliBlock extends Solid implements Mineable {
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 		if (block.getSource() instanceof Entity) {
-			if (((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial() instanceof Pickaxe) {
+			Material held = ((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial();
+			if (held.equals(VanillaMaterials.IRON_PICKAXE, VanillaMaterials.DIAMOND_PICKAXE)) {
 				drops.add(new ItemStack(VanillaMaterials.LAPIS_LAZULI_BLOCK, block.getData(), 1));
 			}
 		}

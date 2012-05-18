@@ -32,6 +32,7 @@ import java.util.Random;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
+import org.spout.api.material.Material;
 
 import org.spout.vanilla.material.Mineable;
 import org.spout.vanilla.material.TimedCraftable;
@@ -75,7 +76,12 @@ public class RedstoneOre extends Ore implements TimedCraftable, Mineable {
 	@Override
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		drops.add(new ItemStack(VanillaMaterials.REDSTONE_DUST, block.getData(), new Random().nextInt(4 - 5 + 1) + 4));
+		if (block.getSource() instanceof Entity) {
+			Material held = ((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial();
+			if (held.equals(VanillaMaterials.IRON_PICKAXE, VanillaMaterials.GOLD_PICKAXE, VanillaMaterials.DIAMOND_PICKAXE)) {
+				drops.add(new ItemStack(VanillaMaterials.REDSTONE_DUST, block.getData(), new Random().nextInt(4 - 5 + 1) + 4));
+			}
+		}
 		return drops;
 	}
 

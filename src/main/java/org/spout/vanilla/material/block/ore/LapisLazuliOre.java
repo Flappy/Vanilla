@@ -32,6 +32,7 @@ import java.util.Random;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
+import org.spout.api.material.Material;
 
 import org.spout.vanilla.material.Mineable;
 import org.spout.vanilla.material.TimedCraftable;
@@ -66,7 +67,8 @@ public class LapisLazuliOre extends Ore implements TimedCraftable, Mineable {
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 		if (block.getSource() instanceof Entity) {
-			if (((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial() instanceof Pickaxe) {
+			Material held = ((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial();
+			if (held.equals(VanillaMaterials.IRON_PICKAXE, VanillaMaterials.GOLD_PICKAXE, VanillaMaterials.DIAMOND_PICKAXE)) {
 				drops.add(new ItemStack(Dye.LAPIS_LAZULI, block.getData(), new Random().nextInt(4 - 8 + 1) + 4));
 			}
 		}

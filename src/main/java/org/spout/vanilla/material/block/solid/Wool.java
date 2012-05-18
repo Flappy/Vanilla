@@ -35,10 +35,12 @@ import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.source.DataSource;
 
+import org.spout.vanilla.material.Mineable;
 import org.spout.vanilla.material.block.Solid;
+import org.spout.vanilla.material.item.MiningTool;
 import org.spout.vanilla.material.item.tool.Pickaxe;
 
-public class Wool extends Solid {
+public class Wool extends Solid implements Mineable {
 	public static final Wool WHITE = register(new Wool("White Wool"));
 	public static final Wool ORANGE = register(new Wool("Orange Wool", WoolColor.ORANGE, WHITE));
 	public static final Wool MAGENTA = register(new Wool("Magenta Wool", WoolColor.MAGENTA, WHITE));
@@ -97,6 +99,11 @@ public class Wool extends Solid {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 		drops.add(new ItemStack(this, 1));
 		return drops;
+	}
+
+	@Override
+	public short getDurabilityPenalty(MiningTool tool) {
+		return 0;
 	}
 
 	public static enum WoolColor implements DataSource {
