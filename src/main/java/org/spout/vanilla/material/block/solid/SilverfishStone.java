@@ -28,35 +28,25 @@ package org.spout.vanilla.material.block.solid;
 
 import java.util.ArrayList;
 
+import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
 
-import org.spout.vanilla.material.Mineable;
-import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.Solid;
-import org.spout.vanilla.material.item.MiningTool;
-import org.spout.vanilla.material.item.tool.Spade;
+import org.spout.vanilla.material.item.tool.Pickaxe;
 
-public class Mycelium extends Solid implements Mineable {
-	public Mycelium(String name, int id) {
+public class SilverfishStone extends Stone {
+	public SilverfishStone(String name, int id) {
 		super(name, id);
-	}
-
-	@Override
-	public void initialize() {
-		super.initialize();
-		this.setHardness(0.6F).setResistance(0.8F);
-	}
-
-	@Override
-	public short getDurabilityPenalty(MiningTool tool) {
-		return tool instanceof Spade ? (short) 1 : (short) 2;
 	}
 
 	@Override
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		drops.add(new ItemStack(VanillaMaterials.DIRT, 1));
+		if (block.getSource() instanceof Entity) {
+			if (((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial() instanceof Pickaxe) {
+				drops.add(new ItemStack(this, 1));
+			}
+		}
 		return drops;
 	}
 }

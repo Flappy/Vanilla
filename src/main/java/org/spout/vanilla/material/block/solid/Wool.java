@@ -26,12 +26,17 @@
  */
 package org.spout.vanilla.material.block.solid;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.spout.api.entity.Entity;
+import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.source.DataSource;
 
 import org.spout.vanilla.material.block.Solid;
+import org.spout.vanilla.material.item.tool.Pickaxe;
 
 public class Wool extends Solid {
 	public static final Wool WHITE = register(new Wool("White Wool"));
@@ -85,6 +90,13 @@ public class Wool extends Solid {
 	@Override
 	public boolean canBurn() {
 		return true;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(this, 1));
+		return drops;
 	}
 
 	public static enum WoolColor implements DataSource {

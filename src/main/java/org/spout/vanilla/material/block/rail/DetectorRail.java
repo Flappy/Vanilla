@@ -28,6 +28,7 @@ package org.spout.vanilla.material.block.rail;
 
 import java.util.ArrayList;
 
+import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.block.BlockFace;
@@ -127,7 +128,7 @@ public class DetectorRail extends RailBase implements RedstoneSource, ScheduleUp
 	@Override
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		//TODO this
+		drops.add(new ItemStack(this, 1));
 		return drops;
 	}
 }

@@ -42,7 +42,6 @@ import org.spout.vanilla.material.item.tool.Pickaxe;
 import org.spout.vanilla.util.MoveReaction;
 
 public class Obsidian extends Solid implements Mineable {
-	ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 	public Obsidian(String name, int id) {
 		super(name, id);
 	}
@@ -51,8 +50,6 @@ public class Obsidian extends Solid implements Mineable {
 	public void initialize() {
 		super.initialize();
 		this.setHardness(50.0F).setResistance(2000.0F);
-		//By default blocks are initialized with bad data.
-		drops.add(new ItemStack(this, (short) -1, 1));
 	}
 
 	@Override
@@ -70,7 +67,7 @@ public class Obsidian extends Solid implements Mineable {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 		if (block.getSource() instanceof Entity) {
 			if (((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial().equals(VanillaMaterials.DIAMOND_PICKAXE)) {
-				drops.add(new ItemStack(block.getMaterial(), block.getData(), 1));
+				drops.add(new ItemStack(this, 1));
 			}
 		}
 		return drops;

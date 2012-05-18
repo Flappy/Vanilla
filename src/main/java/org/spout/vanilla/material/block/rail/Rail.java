@@ -26,8 +26,12 @@
  */
 package org.spout.vanilla.material.block.rail;
 
-import org.spout.api.geo.cuboid.Block;
+import java.util.ArrayList;
 
+import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
+
+import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.block.RailBase;
 import org.spout.vanilla.material.block.RedstoneTarget;
 import org.spout.vanilla.util.RailsState;
@@ -64,5 +68,12 @@ public class Rail extends RailBase implements RedstoneTarget {
 	@Override
 	public boolean isReceivingPower(Block block) {
 		return RedstoneUtil.isReceivingPower(block);
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(this, 1));
+		return drops;
 	}
 }

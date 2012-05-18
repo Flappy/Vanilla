@@ -26,9 +26,12 @@
  */
 package org.spout.vanilla.material.block.redstone;
 
+import java.util.ArrayList;
+
 import org.spout.api.entity.Entity;
 import org.spout.api.event.player.PlayerInteractEvent.Action;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.block.BlockFaces;
 
@@ -55,7 +58,6 @@ public class RedstoneRepeater extends GroundAttachable implements RedstoneSource
 	public void initialize() {
 		super.initialize();
 		this.setHardness(0.0F).setResistance(0.0F);
-		this.setDrop(VanillaMaterials.REDSTONE_REPEATER);
 		if (powered) {
 			this.setLightLevel(9);
 		}
@@ -166,5 +168,12 @@ public class RedstoneRepeater extends GroundAttachable implements RedstoneSource
 	public boolean isReceivingPower(Block block) {
 		BlockFace face = this.getFacing(block).getOpposite();
 		return RedstoneUtil.isPowered(block.translate(face), face.getOpposite());
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(this, 1));
+		return drops;
 	}
 }

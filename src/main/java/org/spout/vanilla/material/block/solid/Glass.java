@@ -42,7 +42,7 @@ public class Glass extends Solid {
 	@Override
 	public void initialize() {
 		super.initialize();
-		this.setHardness(0.3F).setResistance(0.5F).setDrop(null);
+		this.setHardness(0.3F).setResistance(0.5F);
 	}
 
 	@Override

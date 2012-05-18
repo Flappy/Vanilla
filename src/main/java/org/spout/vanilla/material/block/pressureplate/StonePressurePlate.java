@@ -59,7 +59,7 @@ public class StonePressurePlate extends PressurePlate implements Mineable {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 		if (block.getSource() instanceof Entity) {
 			if (((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial() instanceof Pickaxe) {
-				drops.add(new ItemStack(VanillaMaterials.STONE_PRESSURE_PLATE, block.getData(), 1));
+				drops.add(new ItemStack(this, 1));
 			}
 		}
 		return drops;

@@ -26,6 +26,8 @@
  */
 package org.spout.vanilla.material.block.solid;
 
+import java.util.ArrayList;
+
 import org.spout.api.entity.Entity;
 import org.spout.api.event.player.PlayerInteractEvent.Action;
 import org.spout.api.geo.cuboid.Block;
@@ -106,5 +108,12 @@ public class Jukebox extends Solid implements Fuel {
 	@Override
 	public float getFuelTime() {
 		return BURN_TIME;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(this, 1));
+		return drops;
 	}
 }

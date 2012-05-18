@@ -135,7 +135,7 @@ public class StoneButton extends AbstractAttachable implements PointAttachable, 
 	@Override
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		drops.add(new ItemStack(VanillaMaterials.STONE_BUTTON, block.getData(), 1));
+		drops.add(new ItemStack(this, block.getData(), 1));
 		return drops;
 	}
 }

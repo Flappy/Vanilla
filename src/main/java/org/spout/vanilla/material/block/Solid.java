@@ -34,7 +34,7 @@ import org.spout.vanilla.material.VanillaBlockMaterial;
 import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.util.MoveReaction;
 
-public abstract class Solid extends VanillaBlockMaterial {
+public class Solid extends VanillaBlockMaterial {
 	public Solid(String name, int id) {
 		super(name, id);
 	}

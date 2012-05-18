@@ -26,7 +26,10 @@
  */
 package org.spout.vanilla.material.block.redstone;
 
+import java.util.ArrayList;
+
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.block.BlockFace;
 
 import org.spout.vanilla.controller.world.BlockUpdater;
@@ -50,7 +53,7 @@ public class RedstoneTorch extends Torch implements RedstoneSource, RedstoneTarg
 	@Override
 	public void initialize() {
 		super.initialize();
-		this.setHardness(0.0F).setResistance(0.0F).setDrop(VanillaMaterials.REDSTONE_TORCH_OFF);
+		this.setHardness(0.0F).setResistance(0.0F);
 		if (powered) {
 			this.setLightLevel(7);
 		}
@@ -123,5 +126,12 @@ public class RedstoneTorch extends Torch implements RedstoneSource, RedstoneTarg
 	@Override
 	public void doRedstoneUpdates(Block block) {
 		block.setSource(this).update().translate(BlockFace.TOP).update();
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(VanillaMaterials.REDSTONE_TORCH_OFF, 1));
+		return drops;
 	}
 }

@@ -26,7 +26,10 @@
  */
 package org.spout.vanilla.material.block.solid;
 
+import java.util.ArrayList;
+
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.block.BlockFaces;
 
@@ -77,5 +80,12 @@ public class Pumpkin extends Solid implements Directional {
 	 */
 	public boolean isLantern() {
 		return lantern;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(this, 1));
+		return drops;
 	}
 }

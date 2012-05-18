@@ -26,7 +26,10 @@
  */
 package org.spout.vanilla.material.block.redstone;
 
+import java.util.ArrayList;
+
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.block.BlockFaces;
@@ -48,7 +51,7 @@ public class RedstoneWire extends GroundAttachable implements RedstoneSource, Re
 	@Override
 	public void initialize() {
 		super.initialize();
-		this.setHardness(0.0F).setResistance(0.0F).setDrop(VanillaMaterials.REDSTONE_DUST);
+		this.setHardness(0.0F).setResistance(0.0F);
 	}
 
 	@Override
@@ -154,6 +157,13 @@ public class RedstoneWire extends GroundAttachable implements RedstoneSource, Re
 	@Override
 	public boolean isReceivingPower(Block block) {
 		return this.getReceivingPower(block) > 0;
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(VanillaMaterials.REDSTONE_DUST, 1));
+		return drops;
 	}
 
 	public short getReceivingPower(Block block) {
