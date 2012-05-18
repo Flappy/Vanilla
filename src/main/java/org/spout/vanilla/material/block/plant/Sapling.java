@@ -109,7 +109,7 @@ public class Sapling extends GroundAttachable implements Plant, Fuel {
 	@Override
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		drops.add(new ItemStack(block.getSubMaterial(), block.getData(), 1));
+		drops.add(new ItemStack(this, 1));
 		return drops;
 	}
 

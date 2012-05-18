@@ -93,7 +93,13 @@ public class WheatCrop extends GroundAttachable implements Plant {
 	@Override
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		//TODO This
+		int stage = getGrowthStage(block);
+		//final stage
+		//TODO Make a nice enum of this...
+		//TODO Drop seeds based on growth stage
+		if (stage == 8) {
+			drops.add(new ItemStack(VanillaMaterials.WHEAT, 1));
+		}
 		return drops;
 	}
 
@@ -111,5 +117,4 @@ public class WheatCrop extends GroundAttachable implements Plant {
 
 	// TODO: Grow
 	// TODO: Trampling
-	// TODO: Multiple drops
 }

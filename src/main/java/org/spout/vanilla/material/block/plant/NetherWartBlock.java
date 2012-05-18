@@ -80,7 +80,7 @@ public class NetherWartBlock extends GroundAttachable implements Plant {
 	@Override
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		drops.add(new ItemStack(VanillaMaterials.LILY_PAD, block.getData(), stage == GrowthStage.LAST ? new Random().nextInt(4) + 2 : 1));
+		drops.add(new ItemStack(VanillaMaterials.NETHER_WART, stage == GrowthStage.LAST ? new Random().nextInt(4) + 2 : 1));
 		return drops;
 	}
 

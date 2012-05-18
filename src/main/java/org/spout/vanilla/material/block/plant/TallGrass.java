@@ -68,7 +68,10 @@ public class TallGrass extends DeadBush {
 	@Override
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		//TODO This
+		Random rand = new Random();
+		if (rand.nextInt(100) < (8 + rand.nextInt(7))) {
+			drops.add(new ItemStack(VanillaMaterials.SEEDS, 1));
+		}
 		return drops;
 	}
 }

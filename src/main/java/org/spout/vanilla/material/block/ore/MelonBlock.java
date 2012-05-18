@@ -26,10 +26,24 @@
  */
 package org.spout.vanilla.material.block.ore;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import org.spout.api.geo.cuboid.Block;
+import org.spout.api.inventory.ItemStack;
+
+import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.block.Ore;
 
 public class MelonBlock extends Ore {
 	public MelonBlock(String name, int id) {
 		super(name, id);
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(Block block) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		drops.add(new ItemStack(VanillaMaterials.MELON_SLICE, block.getData(), new Random().nextInt(3 - 7 + 1) + 3));
+		return drops;
 	}
 }
