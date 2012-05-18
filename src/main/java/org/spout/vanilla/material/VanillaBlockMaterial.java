@@ -27,6 +27,8 @@
 package org.spout.vanilla.material;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.spout.api.collision.CollisionStrategy;
 import org.spout.api.event.block.BlockChangeEvent;
@@ -48,7 +50,7 @@ import org.spout.vanilla.util.VanillaPlayerUtil;
 public abstract class VanillaBlockMaterial extends BlockMaterial implements VanillaMaterial {
 	public static final short REDSTONE_POWER_MAX = 15;
 	public static final short REDSTONE_POWER_MIN = 0;
-	private ArrayList<ItemStack> drops;
+	private List<ItemStack> drops;
 	private float resistance;
 	private int meleeDamage;
 
@@ -90,10 +92,6 @@ public abstract class VanillaBlockMaterial extends BlockMaterial implements Vani
 			return;
 		}
 		this.onDestroyBlock(block);
-		/* Calling this after the event gives a developer a chance to modify the drops themselves in the event */
-		if (drops == null || drops.isEmpty() || drops.size() == 0) {
-			return;
-		}
 		this.onDestroySpawnDrops(block);
 	}
 
@@ -169,17 +167,14 @@ public abstract class VanillaBlockMaterial extends BlockMaterial implements Vani
 	 * @param block to spawn drops for
 	 */
 	public void onDestroySpawnDrops(Block block) {
-		if (VanillaPlayerUtil.isCreative(block.getSource()) || drops == null || drops.isEmpty()) {
+		if (VanillaPlayerUtil.isCreative(block.getSource()) || drops == null || drops.isEmpty() || drops.size() <= 0) {
 			return;
 		}
 
 		//TODO stack items together for more performance
-		if (drops != null && drops.size() != 0) {
-			for (ItemStack item : drops) {
-				block.getPosition().getWorld().createAndSpawnEntity(block.getPosition(), new Item(item, new Vector3(0, 5, 0)));
-			}
+		for (ItemStack item : drops) {
+			block.getPosition().getWorld().createAndSpawnEntity(block.getPosition(), new Item(item, new Vector3(0, 5, 0)));
 		}
-		drops.clear();
 	}
 
 	/**
@@ -306,7 +301,7 @@ public abstract class VanillaBlockMaterial extends BlockMaterial implements Vani
 	 * @param drops The new drops to drop.
 	 * @return
 	 */
-	public void setDrops(ArrayList<ItemStack> drops) {
+	public void setDrops(List<ItemStack> drops) {
 		this.drops = drops;
 	}
 
@@ -316,7 +311,7 @@ public abstract class VanillaBlockMaterial extends BlockMaterial implements Vani
 	 * @param block
 	 * @return
 	 */
-	public ArrayList<ItemStack> getDrops(Block block) {
-		return null;
+	public List<ItemStack> getDrops(Block block) {
+		return Collections.EMPTY_LIST;
 	}
 }
