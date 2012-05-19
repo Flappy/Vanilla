@@ -34,8 +34,8 @@ import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.block.BlockFaces;
 
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.AbstractAttachable;
-import org.spout.vanilla.material.block.PointAttachable;
+import org.spout.vanilla.material.block.attachable.AbstractAttachable;
+import org.spout.vanilla.material.block.attachable.PointAttachable;
 
 public class Torch extends AbstractAttachable implements PointAttachable {
 	public Torch(String name, int id) {

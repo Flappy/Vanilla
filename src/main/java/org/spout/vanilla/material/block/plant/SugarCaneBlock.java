@@ -28,7 +28,6 @@ package org.spout.vanilla.material.block.plant;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 
 import org.spout.api.geo.cuboid.Block;
@@ -39,7 +38,7 @@ import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.block.BlockFaces;
 
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.GroundAttachable;
+import org.spout.vanilla.material.block.attachable.GroundAttachable;
 
 public class SugarCaneBlock extends GroundAttachable {
 	private final Set<Material> allowedBases = new HashSet<Material>(4);

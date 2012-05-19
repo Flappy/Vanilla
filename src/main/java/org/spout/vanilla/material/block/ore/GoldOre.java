@@ -36,7 +36,6 @@ import org.spout.api.material.Material;
 import org.spout.vanilla.material.Mineable;
 import org.spout.vanilla.material.TimedCraftable;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.Ore;
 import org.spout.vanilla.material.block.solid.Furnace;
 import org.spout.vanilla.material.item.MiningTool;
 import org.spout.vanilla.material.item.tool.Pickaxe;

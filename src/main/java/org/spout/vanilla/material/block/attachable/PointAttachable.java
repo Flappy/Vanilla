@@ -24,16 +24,13 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package org.spout.vanilla.material.block;
+package org.spout.vanilla.material.block.attachable;
 
-import org.spout.api.Source;
-import org.spout.api.geo.cuboid.Block;
+import org.spout.vanilla.material.block.attachable.Attachable;
 
-public interface RedstoneTarget extends Source {
-	/**
-	 * Checks if a block is receiving power from neighbouring blocks.
-	 * @param block to check
-	 * @return True if the block is receiving power
-	 */
-	public boolean isReceivingPower(Block block);
+/**
+ * Represents a block material that is attached to a single point
+ * For example: torches and signs
+ */
+public interface PointAttachable extends Attachable {
 }

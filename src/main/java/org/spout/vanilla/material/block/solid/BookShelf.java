@@ -33,7 +33,6 @@ import org.spout.api.inventory.ItemStack;
 
 import org.spout.vanilla.material.Fuel;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.Solid;
 import org.spout.vanilla.util.Instrument;
 
 public class BookShelf extends Solid implements Fuel {

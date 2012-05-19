@@ -32,7 +32,6 @@ import org.spout.api.material.block.BlockFace;
 
 import org.spout.vanilla.material.Mineable;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.Solid;
 import org.spout.vanilla.material.item.MiningTool;
 import org.spout.vanilla.material.item.tool.Pickaxe;
 import org.spout.vanilla.world.generator.nether.NetherGenerator;

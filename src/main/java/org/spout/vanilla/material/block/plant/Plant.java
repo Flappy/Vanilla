@@ -24,54 +24,12 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package org.spout.vanilla.material.block.rail;
+package org.spout.vanilla.material.block.plant;
 
-import java.util.ArrayList;
+public interface Plant {
+	public boolean hasGrowthStages();
 
-import org.spout.api.geo.cuboid.Block;
-import org.spout.api.inventory.ItemStack;
+	public int getNumGrowthStages();
 
-import org.spout.vanilla.material.block.redstone.RedstoneTarget;
-import org.spout.vanilla.util.RailsState;
-import org.spout.vanilla.util.RedstoneUtil;
-
-public class Rail extends RailBase implements RedstoneTarget {
-	public Rail(String name, int id) {
-		super(name, id);
-	}
-
-	@Override
-	public void onUpdate(Block block) {
-		super.onUpdate(block);
-		if (block.getMaterial().equals(this)) {
-			this.doTrackLogic(block);
-		}
-	}
-
-	@Override
-	public boolean canCurve() {
-		return true;
-	}
-
-	@Override
-	public void setState(Block block, RailsState state) {
-		block.setData(state.getData());
-	}
-
-	@Override
-	public RailsState getState(Block block) {
-		return RailsState.get(block.getData());
-	}
-
-	@Override
-	public boolean isReceivingPower(Block block) {
-		return RedstoneUtil.isReceivingPower(block);
-	}
-
-	@Override
-	public ArrayList<ItemStack> getDrops(Block block) {
-		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		drops.add(new ItemStack(this, 1));
-		return drops;
-	}
+	public int getMinimumLightToGrow();
 }

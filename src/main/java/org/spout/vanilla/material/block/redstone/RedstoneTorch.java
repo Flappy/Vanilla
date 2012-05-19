@@ -34,8 +34,6 @@ import org.spout.api.material.block.BlockFace;
 
 import org.spout.vanilla.controller.world.BlockUpdater;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.RedstoneSource;
-import org.spout.vanilla.material.block.RedstoneTarget;
 import org.spout.vanilla.material.block.ScheduleUpdated;
 import org.spout.vanilla.material.block.misc.Torch;
 import org.spout.vanilla.util.RedstonePowerMode;

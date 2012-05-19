@@ -24,29 +24,25 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package org.spout.vanilla.material.block;
+package org.spout.vanilla.material.block.portal;
 
-import java.util.ArrayList;
-import java.util.Random;
+import org.spout.api.material.BlockMaterial;
 
-import org.spout.api.geo.cuboid.Block;
-import org.spout.api.inventory.ItemStack;
+import org.spout.vanilla.material.VanillaBlockMaterial;
 
-import org.spout.vanilla.util.Instrument;
+public class Portal extends VanillaBlockMaterial {
+	private BlockMaterial frameMaterial;
 
-public class Ore extends Solid {
-	public Ore(String name, int id) {
+	public Portal(String name, int id) {
 		super(name, id);
 	}
 
-	@Override
-	public void initialize() {
-		super.initialize();
-		this.setHardness(3.0F).setResistance(5.0F);
+	public BlockMaterial getFrameMaterial() {
+		return this.frameMaterial;
 	}
 
-	@Override
-	public Instrument getInstrument() {
-		return Instrument.BASSDRUM;
+	public Portal setFrameMaterial(BlockMaterial material) {
+		this.frameMaterial = material;
+		return this;
 	}
 }

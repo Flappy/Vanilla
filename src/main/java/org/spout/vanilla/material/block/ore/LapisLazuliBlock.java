@@ -35,9 +35,8 @@ import org.spout.api.material.Material;
 
 import org.spout.vanilla.material.Mineable;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.Solid;
+import org.spout.vanilla.material.block.solid.Solid;
 import org.spout.vanilla.material.item.MiningTool;
-import org.spout.vanilla.material.item.misc.Dye;
 import org.spout.vanilla.material.item.tool.Pickaxe;
 
 public class LapisLazuliBlock extends Solid implements Mineable {

@@ -29,17 +29,13 @@ package org.spout.vanilla.material.block.solid;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.spout.api.Source;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.BlockMaterial;
-import org.spout.api.material.Material;
 import org.spout.api.material.block.BlockFace;
 
-import org.spout.vanilla.controller.object.moving.Item;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.Solid;
 import org.spout.vanilla.material.block.misc.SignBase;
 import org.spout.vanilla.util.VanillaPlayerUtil;
 

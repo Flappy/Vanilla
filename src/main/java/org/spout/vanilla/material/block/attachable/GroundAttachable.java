@@ -24,66 +24,37 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package org.spout.vanilla.material.block;
+package org.spout.vanilla.material.block.attachable;
 
 import org.spout.api.geo.cuboid.Block;
-import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 
 import org.spout.vanilla.material.VanillaBlockMaterial;
-import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.util.MoveReaction;
+import org.spout.vanilla.material.block.attachable.AbstractAttachable;
 
-public class Solid extends VanillaBlockMaterial {
-	public Solid(String name, int id) {
+public class GroundAttachable extends AbstractAttachable {
+	public GroundAttachable(String name, int id) {
 		super(name, id);
+		this.setAttachable(BlockFace.BOTTOM);
 	}
 
-	public Solid(String name, int id, int data, VanillaBlockMaterial parent) {
+	public GroundAttachable(String name, int id, int data, VanillaBlockMaterial parent) {
 		super(name, id, data, parent);
-	}
-
-	/**
-	 * Gets whether this material can be move using a MovingBlock entity
-	 */
-	public boolean isMoving() {
-		return false;
+		this.setAttachable(BlockFace.BOTTOM);
 	}
 
 	@Override
-	public boolean isRedstoneConductor() {
+	public boolean canSeekAttachedAlternative() {
 		return true;
 	}
 
 	@Override
-	public MoveReaction getMoveReaction(Block block) {
-		return MoveReaction.ALLOW;
+	public void setAttachedFace(Block block, BlockFace attachedFace) {
+		block.setData(0);
 	}
 
 	@Override
-	public boolean canSupport(BlockMaterial material, BlockFace face) {
-		if (material.equals(VanillaMaterials.FIRE)) {
-			//solids that can burn have fire on all sides
-			//those that do not only allow fire on top
-			if (this.canBurn()) {
-				return true;
-			} else {
-				return face == BlockFace.TOP;
-			}
-		} else {
-			return true;
-		}
-	}
-
-	@Override
-	public void onUpdate(Block block) {
-		super.onUpdate(block);
-		if (this.isMoving()) {
-			if (!block.translate(BlockFace.BOTTOM).getMaterial().isPlacementObstacle()) {
-				//Just do nothing for now...
-				//block.getSubMaterial().onDestroy(block);
-				//world.createAndSpawnEntity(block.getPosition(), new MovingBlock(this)); TODO: We aren't ready for this lol.
-			}
-		}
+	public BlockFace getAttachedFace(Block block) {
+		return BlockFace.BOTTOM;
 	}
 }

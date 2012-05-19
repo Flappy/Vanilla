@@ -39,8 +39,8 @@ import org.spout.api.math.Vector3;
 import org.spout.api.util.LogicUtil;
 
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.AbstractAttachable;
-import org.spout.vanilla.material.block.RedstoneSource;
+import org.spout.vanilla.material.block.attachable.AbstractAttachable;
+import org.spout.vanilla.material.block.redstone.RedstoneSource;
 import org.spout.vanilla.protocol.VanillaNetworkSynchronizer;
 import org.spout.vanilla.protocol.msg.PlayEffectMessage;
 import org.spout.vanilla.util.RedstonePowerMode;

@@ -28,12 +28,8 @@ package org.spout.vanilla.material.block.solid;
 
 import java.util.ArrayList;
 
-import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
-
-import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.Solid;
 
 public class RedstoneLamp extends Solid {
 	private final boolean on;

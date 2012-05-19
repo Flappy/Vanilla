@@ -37,10 +37,9 @@ import org.spout.api.material.block.BlockFaces;
 import org.spout.api.util.LogicUtil;
 
 import org.spout.vanilla.controller.world.BlockUpdater;
-import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.AbstractAttachable;
-import org.spout.vanilla.material.block.PointAttachable;
-import org.spout.vanilla.material.block.RedstoneSource;
+import org.spout.vanilla.material.block.attachable.AbstractAttachable;
+import org.spout.vanilla.material.block.attachable.PointAttachable;
+import org.spout.vanilla.material.block.redstone.RedstoneSource;
 import org.spout.vanilla.material.block.ScheduleUpdated;
 import org.spout.vanilla.protocol.VanillaNetworkSynchronizer;
 import org.spout.vanilla.protocol.msg.PlayEffectMessage;

@@ -31,8 +31,6 @@ import java.util.ArrayList;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
 
-import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.Solid;
 import org.spout.vanilla.util.Instrument;
 
 public class CraftingTable extends Solid {

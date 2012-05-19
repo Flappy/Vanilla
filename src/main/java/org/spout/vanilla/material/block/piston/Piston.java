@@ -27,7 +27,6 @@
 package org.spout.vanilla.material.block.piston;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
@@ -41,7 +40,7 @@ import org.spout.api.util.LogicUtil;
 import org.spout.vanilla.material.VanillaBlockMaterial;
 import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.block.Directional;
-import org.spout.vanilla.material.block.RedstoneTarget;
+import org.spout.vanilla.material.block.redstone.RedstoneTarget;
 import org.spout.vanilla.protocol.VanillaNetworkSynchronizer;
 import org.spout.vanilla.util.MoveReaction;
 import org.spout.vanilla.util.RedstoneUtil;

@@ -41,7 +41,7 @@ import org.spout.vanilla.controller.VanillaControllerTypes;
 import org.spout.vanilla.controller.block.SignController;
 import org.spout.vanilla.material.Mineable;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.AbstractAttachable;
+import org.spout.vanilla.material.block.attachable.AbstractAttachable;
 import org.spout.vanilla.material.item.MiningTool;
 import org.spout.vanilla.util.MoveReaction;
 

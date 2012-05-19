@@ -24,55 +24,66 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package org.spout.vanilla.material.block.ore;
+package org.spout.vanilla.material.block.solid;
 
-import java.util.ArrayList;
-
-import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
-import org.spout.api.inventory.ItemStack;
+import org.spout.api.material.BlockMaterial;
+import org.spout.api.material.block.BlockFace;
 
-import org.spout.vanilla.material.Mineable;
-import org.spout.vanilla.material.TimedCraftable;
+import org.spout.vanilla.material.VanillaBlockMaterial;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.solid.Furnace;
-import org.spout.vanilla.material.item.MiningTool;
-import org.spout.vanilla.material.item.tool.Pickaxe;
+import org.spout.vanilla.util.MoveReaction;
 
-public class CoalOre extends Ore implements TimedCraftable, Mineable {
-	public CoalOre(String name, int id) {
+public class Solid extends VanillaBlockMaterial {
+	public Solid(String name, int id) {
 		super(name, id);
 	}
 
-	@Override
-	public void initialize() {
-		super.initialize();
+	public Solid(String name, int id, int data, VanillaBlockMaterial parent) {
+		super(name, id, data, parent);
+	}
+
+	/**
+	 * Gets whether this material can be move using a MovingBlock entity
+	 */
+	public boolean isMoving() {
+		return false;
 	}
 
 	@Override
-	public ItemStack getResult() {
-		return new ItemStack(VanillaMaterials.COAL, 1);
+	public boolean isRedstoneConductor() {
+		return true;
 	}
 
 	@Override
-	public float getCraftTime() {
-		return Furnace.SMELT_TIME;
+	public MoveReaction getMoveReaction(Block block) {
+		return MoveReaction.ALLOW;
 	}
 
 	@Override
-	public short getDurabilityPenalty(MiningTool tool) {
-		return tool instanceof Pickaxe ? (short) 1 : (short) 2;
+	public boolean canSupport(BlockMaterial material, BlockFace face) {
+		if (material.equals(VanillaMaterials.FIRE)) {
+			//solids that can burn have fire on all sides
+			//those that do not only allow fire on top
+			if (this.canBurn()) {
+				return true;
+			} else {
+				return face == BlockFace.TOP;
+			}
+		} else {
+			return true;
+		}
 	}
 
 	@Override
-	public ArrayList<ItemStack> getDrops(Block block) {
-		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-		//2 4
-		if (block.getSource() instanceof Entity) {
-			if (((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial() instanceof Pickaxe) {
-				drops.add(new ItemStack(VanillaMaterials.COAL, block.getData(), 1));
+	public void onUpdate(Block block) {
+		super.onUpdate(block);
+		if (this.isMoving()) {
+			if (!block.translate(BlockFace.BOTTOM).getMaterial().isPlacementObstacle()) {
+				//Just do nothing for now...
+				//block.getSubMaterial().onDestroy(block);
+				//world.createAndSpawnEntity(block.getPosition(), new MovingBlock(this)); TODO: We aren't ready for this lol.
 			}
 		}
-		return drops;
 	}
 }

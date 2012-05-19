@@ -28,7 +28,6 @@ package org.spout.vanilla.material.block.portal;
 
 import org.spout.api.geo.cuboid.Block;
 
-import org.spout.vanilla.material.block.Portal;
 import org.spout.vanilla.util.MoveReaction;
 
 public class EndPortal extends Portal {

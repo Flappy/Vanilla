@@ -24,71 +24,41 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package org.spout.vanilla.material.block.ore;
+package org.spout.vanilla.material.block.solid;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
-import org.spout.api.material.Material;
 
 import org.spout.vanilla.material.Mineable;
-import org.spout.vanilla.material.TimedCraftable;
-import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.solid.Furnace;
 import org.spout.vanilla.material.item.MiningTool;
 import org.spout.vanilla.material.item.tool.Pickaxe;
 
-public class RedstoneOre extends Ore implements TimedCraftable, Mineable {
-	private final boolean glowing;
-
-	public RedstoneOre(String name, int id, boolean glowing) {
+public class Endstone extends Solid implements Mineable {
+	public Endstone(String name, int id) {
 		super(name, id);
-		this.glowing = glowing;
-	}
-
-	@Override
-	public void initialize() {
-		super.initialize();
-		if (glowing) {
-			this.setLightLevel(3);
-		}
-	}
-
-	@Override
-	public ItemStack getResult() {
-		return new ItemStack(VanillaMaterials.REDSTONE_DUST, 1);
-	}
-
-	@Override
-	public float getCraftTime() {
-		return Furnace.SMELT_TIME;
 	}
 
 	@Override
 	public short getDurabilityPenalty(MiningTool tool) {
-		return tool instanceof Pickaxe ? (short) 1 : (short) 2;
+		//TODO Is this right bergerkiller?
+		if (tool instanceof Pickaxe) {
+			return 1;
+		} else {
+			return 2;
+		}
 	}
 
 	@Override
 	public ArrayList<ItemStack> getDrops(Block block) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 		if (block.getSource() instanceof Entity) {
-			Material held = ((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial();
-			if (held.equals(VanillaMaterials.IRON_PICKAXE, VanillaMaterials.GOLD_PICKAXE, VanillaMaterials.DIAMOND_PICKAXE)) {
-				drops.add(new ItemStack(VanillaMaterials.REDSTONE_DUST, block.getData(), new Random().nextInt(4 - 5 + 1) + 4));
+			if (((Entity) block.getSource()).getInventory().getCurrentItem().getMaterial() instanceof Pickaxe) {
+				drops.add(new ItemStack(block.getMaterial(), block.getData(), 1));
 			}
 		}
 		return drops;
-	}
-
-	/**
-	 * Whether this redstone ore block material is glowing
-	 * @return true if glowing
-	 */
-	public boolean isGlowing() {
-		return glowing;
 	}
 }

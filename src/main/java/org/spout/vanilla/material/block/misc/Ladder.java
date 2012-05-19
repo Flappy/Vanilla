@@ -34,7 +34,7 @@ import org.spout.api.material.block.BlockFace;
 import org.spout.api.material.block.BlockFaces;
 
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.AbstractAttachable;
+import org.spout.vanilla.material.block.attachable.AbstractAttachable;
 
 public class Ladder extends AbstractAttachable {
 	public Ladder(String name, int id) {

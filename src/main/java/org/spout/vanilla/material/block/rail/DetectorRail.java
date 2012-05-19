@@ -28,16 +28,13 @@ package org.spout.vanilla.material.block.rail;
 
 import java.util.ArrayList;
 
-import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.util.LogicUtil;
 
 import org.spout.vanilla.controller.world.BlockUpdater;
-import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.RailBase;
-import org.spout.vanilla.material.block.RedstoneSource;
+import org.spout.vanilla.material.block.redstone.RedstoneSource;
 import org.spout.vanilla.material.block.ScheduleUpdated;
 import org.spout.vanilla.util.RailsState;
 import org.spout.vanilla.util.RedstonePowerMode;

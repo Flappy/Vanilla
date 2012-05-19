@@ -24,36 +24,24 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package org.spout.vanilla.material.block;
+package org.spout.vanilla.material.block.ore;
 
-import org.spout.api.Source;
-import org.spout.api.geo.cuboid.Block;
-import org.spout.api.material.block.BlockFace;
+import org.spout.vanilla.material.block.solid.Solid;
+import org.spout.vanilla.util.Instrument;
 
-import org.spout.vanilla.util.RedstonePowerMode;
+public class Ore extends Solid {
+	public Ore(String name, int id) {
+		super(name, id);
+	}
 
-public interface RedstoneSource extends Source {
-	/**
-	 * Gets how much redstone power this redstone source block provides to the direction given.<br>
-	 * @param block	 of this redstone source
-	 * @param direction it provides power to
-	 * @param powerMode to use to get the power
-	 * @return how much power this block provides to the given direction
-	 */
-	short getRedstonePowerTo(Block block, BlockFace direction, RedstonePowerMode powerMode);
+	@Override
+	public void initialize() {
+		super.initialize();
+		this.setHardness(3.0F).setResistance(5.0F);
+	}
 
-	/**
-	 * Gets if this redstone source block provides power to the direction given.<br>
-	 * @param block	 of this redstone source
-	 * @param direction it provides power to
-	 * @param powerMode to use to get the power
-	 * @return True if this redstone source block provides power
-	 */
-	public boolean hasRedstonePowerTo(Block block, BlockFace direction, RedstonePowerMode powerMode);
-
-	/**
-	 * Performs redstone updates on all receiving blocks
-	 * @param block of this material
-	 */
-	public void doRedstoneUpdates(Block block);
+	@Override
+	public Instrument getInstrument() {
+		return Instrument.BASSDRUM;
+	}
 }

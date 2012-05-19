@@ -34,7 +34,7 @@ import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.GroundAttachable;
+import org.spout.vanilla.material.block.attachable.GroundAttachable;
 
 public class LilyPad extends GroundAttachable {
 	public LilyPad(String name, int id) {

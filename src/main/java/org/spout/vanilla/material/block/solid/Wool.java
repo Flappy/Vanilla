@@ -30,15 +30,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.source.DataSource;
 
 import org.spout.vanilla.material.Mineable;
-import org.spout.vanilla.material.block.Solid;
 import org.spout.vanilla.material.item.MiningTool;
-import org.spout.vanilla.material.item.tool.Pickaxe;
 
 public class Wool extends Solid implements Mineable {
 	public static final Wool WHITE = register(new Wool("White Wool"));

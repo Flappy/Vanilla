@@ -33,9 +33,7 @@ import org.spout.api.inventory.ItemStack;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.util.LogicUtil;
 
-import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.RailBase;
-import org.spout.vanilla.material.block.RedstoneTarget;
+import org.spout.vanilla.material.block.redstone.RedstoneTarget;
 import org.spout.vanilla.util.RailsState;
 import org.spout.vanilla.util.RedstoneUtil;
 

@@ -29,14 +29,12 @@ package org.spout.vanilla.material.block.solid;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.inventory.ItemStack;
 
 import org.spout.vanilla.material.Fuel;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.Ore;
-import org.spout.vanilla.material.item.tool.Pickaxe;
+import org.spout.vanilla.material.block.ore.Ore;
 
 public class MushroomBlock extends Ore implements Fuel {
 	public final float BURN_TIME = 15.f;

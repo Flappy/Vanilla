@@ -24,13 +24,14 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package org.spout.vanilla.material.block;
+package org.spout.vanilla.material.block.rail;
 
 import org.spout.api.collision.BoundingBox;
 import org.spout.api.collision.CollisionStrategy;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.block.BlockFace;
 
+import org.spout.vanilla.material.block.attachable.GroundAttachable;
 import org.spout.vanilla.util.MinecartTrackLogic;
 import org.spout.vanilla.util.RailsState;
 

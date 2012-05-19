@@ -32,7 +32,7 @@ import java.lang.reflect.Modifier;
 import org.spout.api.Spout;
 import org.spout.api.material.BlockMaterial;
 
-import org.spout.vanilla.material.block.Solid;
+import org.spout.vanilla.material.block.solid.Solid;
 import org.spout.vanilla.material.block.door.IronDoorBlock;
 import org.spout.vanilla.material.block.door.WoodenDoorBlock;
 import org.spout.vanilla.material.block.liquid.Lava;
@@ -102,6 +102,7 @@ import org.spout.vanilla.material.block.solid.Dirt;
 import org.spout.vanilla.material.block.solid.Dispenser;
 import org.spout.vanilla.material.block.solid.DoubleSlab;
 import org.spout.vanilla.material.block.solid.EnchantmentTable;
+import org.spout.vanilla.material.block.solid.Endstone;
 import org.spout.vanilla.material.block.solid.Furnace;
 import org.spout.vanilla.material.block.solid.Glass;
 import org.spout.vanilla.material.block.solid.Grass;

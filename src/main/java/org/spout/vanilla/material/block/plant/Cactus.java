@@ -39,7 +39,7 @@ import org.spout.api.material.block.BlockFaces;
 import org.spout.vanilla.configuration.VanillaConfiguration;
 import org.spout.vanilla.material.TimedCraftable;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.material.block.GroundAttachable;
+import org.spout.vanilla.material.block.attachable.GroundAttachable;
 import org.spout.vanilla.material.block.solid.Furnace;
 import org.spout.vanilla.material.item.misc.Dye;
 

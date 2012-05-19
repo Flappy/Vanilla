@@ -26,7 +26,6 @@
  */
 package org.spout.vanilla.material;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,7 +40,7 @@ import org.spout.api.material.block.BlockFaces;
 import org.spout.api.math.Vector3;
 
 import org.spout.vanilla.controller.object.moving.Item;
-import org.spout.vanilla.material.block.RedstoneSource;
+import org.spout.vanilla.material.block.redstone.RedstoneSource;
 import org.spout.vanilla.util.Instrument;
 import org.spout.vanilla.util.MoveReaction;
 import org.spout.vanilla.util.RedstonePowerMode;
